@@ -1,0 +1,1142 @@
+{
+    "af": {
+        "family": "Indo-European",
+        "full": "af_afribooms",
+        "full_form": "UD_Afrikaans-AfriBooms",
+        "genus": "Germanic",
+        "iso-3": "afr",
+        "name": "Afrikaans",
+        "num": 425,
+        "script": "Latn"
+    },
+    "aii": {
+        "family": "Afro-Asiatic",
+        "full": "aii_as",
+        "full_form": "UD_Assyrian-AS",
+        "genus": "Semitic",
+        "iso-3": "aii",
+        "name": "Assyrian Neo-Aramaic",
+        "num": 57,
+        "script": "Hebr"
+    },
+    "ajp": {
+        "family": "Afro-Asiatic",
+        "full": "ajp_madar",
+        "full_form": "UD_South_Levantine_Arabic-MADAR",
+        "genus": "Semitic",
+        "iso-3": "ajp",
+        "name": "South Levantine Arabic",
+        "num": 100,
+        "script": "Arab"
+    },
+    "akk": {
+        "family": "Afro-Asiatic",
+        "full": "akk_riao",
+        "full_form": "UD_Akkadian-RIAO",
+        "genus": "Semitic",
+        "iso-3": "akk",
+        "name": "Akkadian",
+        "num": 1804,
+        "script": "Cuneiform"
+    },
+    "am": {
+        "family": "Afro-Asiatic",
+        "full": "am_att",
+        "full_form": "UD_Amharic-ATT",
+        "genus": "Semitic",
+        "iso-3": "amh",
+        "name": "Amharic",
+        "num": 1074,
+        "script": "Ethi"
+    },
+    "apu": {
+        "family": "Arawakan",
+        "full": "apu_ufpa",
+        "full_form": "UD_Apurina-UFPA",
+        "genus": "Purus",
+        "iso-3": "apu",
+        "name": "Apurin\u00e3",
+        "num": 76,
+        "script": "Apurin\u00e3"
+    },
+    "aqz": {
+        "family": "Tupian",
+        "full": "aqz_tudet",
+        "full_form": "UD_Akuntsu-TuDeT",
+        "genus": "Tupari",
+        "iso-3": "aqz",
+        "name": "Akuntsu",
+        "num": 24,
+        "script": ""
+    },
+    "ar": {
+        "family": "Afro-Asiatic",
+        "full": "ar_nyuad",
+        "full_form": "UD_Arabic-NYUAD",
+        "genus": "Semitic",
+        "iso-3": "ara",
+        "name": "Arabic",
+        "num": 1963,
+        "script": "Arab"
+    },
+    "arr": {
+        "family": "Tupian",
+        "full": "arr_tudet",
+        "full_form": "UD_Karo-TuDeT",
+        "genus": "Ramarama",
+        "iso-3": "arr",
+        "name": "Karo (Brazil)",
+        "num": 674,
+        "script": ""
+    },
+    "be": {
+        "family": "Indo-European",
+        "full": "be_hse",
+        "full_form": "UD_Belarusian-HSE",
+        "genus": "Slavic",
+        "iso-3": "bel",
+        "name": "Belarusian",
+        "num": 889,
+        "script": "Cyrl"
+    },
+    "bg": {
+        "family": "Indo-European",
+        "full": "bg_btb",
+        "full_form": "UD_Bulgarian-BTB",
+        "genus": "Slavic",
+        "iso-3": "bul",
+        "name": "Bulgarian",
+        "num": 1116,
+        "script": "Cyrl"
+    },
+    "bho": {
+        "family": "Indo-European",
+        "full": "bho_bhtb",
+        "full_form": "UD_Bhojpuri-BHTB",
+        "genus": "Indic",
+        "iso-3": "bho",
+        "name": "Bhojpuri",
+        "num": 357,
+        "script": "Deva"
+    },
+    "bm": {
+        "family": "Mande",
+        "full": "bm_crb",
+        "full_form": "UD_Bambara-CRB",
+        "genus": "Western Mande",
+        "iso-3": "bam",
+        "name": "Bambara",
+        "num": 1026,
+        "script": "Latn"
+    },
+    "bn": {
+        "family": "Indo-European",
+        "full": "bn_bru",
+        "full_form": "UD_Bengali-BRU",
+        "genus": "Indic",
+        "iso-3": "ben",
+        "name": "Bengali",
+        "num": 56,
+        "script": "Beng"
+    },
+    "br": {
+        "family": "Indo-European",
+        "full": "br_keb",
+        "full_form": "UD_Breton-KEB",
+        "genus": "Celtic",
+        "iso-3": "bre",
+        "name": "Breton",
+        "num": 888,
+        "script": "Latn"
+    },
+    "bxr": {
+        "family": "Mongolic",
+        "full": "bxr_bdt",
+        "full_form": "UD_Buryat-BDT",
+        "genus": "Altic",
+        "iso-3": "bxr",
+        "name": "Russia Buriat",
+        "num": 908,
+        "script": "Cyrl"
+    },
+    "ca": {
+        "family": "Indo-European",
+        "full": "ca_ancora",
+        "full_form": "UD_Catalan-AnCora",
+        "genus": "Romance",
+        "iso-3": "cat",
+        "name": "Catalan",
+        "num": 1846,
+        "script": "Latn"
+    },
+    "ckt": {
+        "family": "Chukotko-Kamchatkan",
+        "full": "ckt_hse",
+        "full_form": "UD_Chukchi-HSE",
+        "genus": "Northern Chukotko-Kamchatkan",
+        "iso-3": "ckt",
+        "name": "Chukot",
+        "num": 1004,
+        "script": "Latn"
+    },
+    "cop": {
+        "family": "Afro-Asiatic",
+        "full": "cop_scriptorium",
+        "full_form": "UD_Coptic-Scriptorium",
+        "genus": "Egyptian-Coptic",
+        "iso-3": "cop",
+        "name": "Coptic",
+        "num": 403,
+        "script": "Coptic"
+    },
+    "cs": {
+        "family": "Indo-European",
+        "full": "cs_pdt",
+        "full_form": "UD_Czech-PDT",
+        "genus": "Slavic",
+        "iso-3": "ces",
+        "name": "Czech",
+        "num": 10148,
+        "script": "Latn"
+    },
+    "cu": {
+        "family": "Indo-European",
+        "full": "cu_proiel",
+        "full_form": "UD_Old_Church_Slavonic-PROIEL",
+        "genus": "Slavic",
+        "iso-3": "chu",
+        "name": "Church Slavic",
+        "num": 1141,
+        "script": "Glag+Latn"
+    },
+    "cy": {
+        "family": "Indo-European",
+        "full": "cy_ccg",
+        "full_form": "UD_Welsh-CCG",
+        "genus": "Celtic",
+        "iso-3": "cym",
+        "name": "Welsh",
+        "num": 953,
+        "script": "Latn"
+    },
+    "da": {
+        "family": "Indo-European",
+        "full": "da_ddt",
+        "full_form": "UD_Danish-DDT",
+        "genus": "Germanic",
+        "iso-3": "dan",
+        "name": "Danish",
+        "num": 565,
+        "script": "Latn"
+    },
+    "de": {
+        "family": "Indo-European",
+        "full": "de_hdt",
+        "full_form": "UD_German-HDT",
+        "genus": "Germanic",
+        "iso-3": "deu",
+        "name": "German",
+        "num": 18459,
+        "script": "Latn"
+    },
+    "el": {
+        "family": "Indo-European",
+        "full": "el_gdt",
+        "full_form": "UD_Greek-GDT",
+        "genus": "Greek",
+        "iso-3": "ell",
+        "name": "Modern Greek (1453-)",
+        "num": 456,
+        "script": "Grek"
+    },
+    "en": {
+        "family": "Indo-European",
+        "full": "en_ewt",
+        "full_form": "UD_English-EWT",
+        "genus": "Germanic",
+        "iso-3": "eng",
+        "name": "English",
+        "num": 2077,
+        "script": "Latn"
+    },
+    "es": {
+        "family": "Indo-European",
+        "full": "es_ancora",
+        "full_form": "UD_Spanish-AnCora",
+        "genus": "Romance",
+        "iso-3": "spa",
+        "name": "Spanish",
+        "num": 1721,
+        "script": "Latn"
+    },
+    "et": {
+        "family": "Uralic",
+        "full": "et_edt",
+        "full_form": "UD_Estonian-EDT",
+        "genus": "Finnic",
+        "iso-3": "est",
+        "name": "Estonian",
+        "num": 3214,
+        "script": "Latn"
+    },
+    "eu": {
+        "family": "Basque",
+        "full": "eu_bdt",
+        "full_form": "UD_Basque-BDT",
+        "genus": "Basque",
+        "iso-3": "eus",
+        "name": "Basque",
+        "num": 1799,
+        "script": "Latn"
+    },
+    "fa": {
+        "family": "Indo-European",
+        "full": "fa_perdt",
+        "full_form": "UD_Persian-PerDT",
+        "genus": "Iranian",
+        "iso-3": "fas",
+        "name": "Persian",
+        "num": 1455,
+        "script": "Arab"
+    },
+    "fi": {
+        "family": "Uralic",
+        "full": "fi_ood",
+        "full_form": "UD_Finnish-OOD",
+        "genus": "Finnic",
+        "iso-3": "fin",
+        "name": "Finnish",
+        "num": 2122,
+        "script": "Latn"
+    },
+    "fo": {
+        "family": "Indo-European",
+        "full": "fo_oft",
+        "full_form": "UD_Faroese-OFT",
+        "genus": "Germanic",
+        "iso-3": "fao",
+        "name": "Faroese",
+        "num": 1208,
+        "script": "Latn"
+    },
+    "fr": {
+        "family": "Indo-European",
+        "full": "fr_ftb",
+        "full_form": "UD_French-FTB",
+        "genus": "Romance",
+        "iso-3": "fra",
+        "name": "French",
+        "num": 2541,
+        "script": "Latn"
+    },
+    "fro": {
+        "family": "Indo-European",
+        "full": "fro_srcmf",
+        "full_form": "UD_Old_French-SRCMF",
+        "genus": "Romance",
+        "iso-3": "fro",
+        "name": "Old French (842-ca. 1400)",
+        "num": 1927,
+        "script": "Latn"
+    },
+    "ga": {
+        "family": "Indo-European",
+        "full": "ga_idt",
+        "full_form": "UD_Irish-IDT",
+        "genus": "Celtic",
+        "iso-3": "gle",
+        "name": "Irish",
+        "num": 454,
+        "script": "Latn"
+    },
+    "gd": {
+        "family": "Indo-European",
+        "full": "gd_arcosg",
+        "full_form": "UD_Scottish_Gaelic-ARCOSG",
+        "genus": "Celtic",
+        "iso-3": "gla",
+        "name": "Scottish Gaelic",
+        "num": 538,
+        "script": "Latn"
+    },
+    "gl": {
+        "family": "Indo-European",
+        "full": "gl_ctg",
+        "full_form": "UD_Galician-CTG",
+        "genus": "Romance",
+        "iso-3": "glg",
+        "name": "Galician",
+        "num": 861,
+        "script": "Latn"
+    },
+    "got": {
+        "family": "Indo-European",
+        "full": "got_proiel",
+        "full_form": "UD_Gothic-PROIEL",
+        "genus": "Germanic",
+        "iso-3": "got",
+        "name": "Gothic",
+        "num": 1029,
+        "script": "Gothic"
+    },
+    "grc": {
+        "family": "Indo-European",
+        "full": "grc_perseus",
+        "full_form": "UD_Ancient_Greek-Perseus",
+        "genus": "Greek",
+        "iso-3": "grc",
+        "name": "Ancient Greek (to 1453)",
+        "num": 1306,
+        "script": "Grek"
+    },
+    "gsw": {
+        "family": "Indo-European",
+        "full": "gsw_uzh",
+        "full_form": "UD_Swiss_German-UZH",
+        "genus": "Germanic",
+        "iso-3": "gsw",
+        "name": "Swiss German",
+        "num": 100,
+        "script": "Latn"
+    },
+    "gub": {
+        "family": "Tupian",
+        "full": "gub_tudet",
+        "full_form": "UD_Guajajara-TuDeT",
+        "genus": "Maweti-Guarani",
+        "iso-3": "gub",
+        "name": "Guajaj\u00e1ra",
+        "num": 284,
+        "script": "Latn"
+    },
+    "gun": {
+        "family": "Tupian",
+        "full": "gun_dooley",
+        "full_form": "UD_Mbya_Guarani-Dooley",
+        "genus": "Maweti-Guarani",
+        "iso-3": "gun",
+        "name": "Mby\u00e1 Guaran\u00ed",
+        "num": 1046,
+        "script": "Latn"
+    },
+    "gv": {
+        "family": "Indo-European",
+        "full": "gv_cadhan",
+        "full_form": "UD_Manx-Cadhan",
+        "genus": "Celtic",
+        "iso-3": "glv",
+        "name": "Manx",
+        "num": 291,
+        "script": "Latn"
+    },
+    "he": {
+        "family": "Afro-Asiatic",
+        "full": "he_htb",
+        "full_form": "UD_Hebrew-HTB",
+        "genus": "Semitic",
+        "iso-3": "heb",
+        "name": "Hebrew",
+        "num": 491,
+        "script": "Hebr"
+    },
+    "hi": {
+        "family": "Indo-European",
+        "full": "hi_hdtb",
+        "full_form": "UD_Hindi-HDTB",
+        "genus": "Indic",
+        "iso-3": "hin",
+        "name": "Hindi",
+        "num": 1684,
+        "script": "Deva"
+    },
+    "hr": {
+        "family": "Indo-European",
+        "full": "hr_set",
+        "full_form": "UD_Croatian-SET",
+        "genus": "Slavic",
+        "iso-3": "hrv",
+        "name": "Croatian",
+        "num": 1136,
+        "script": "Latn"
+    },
+    "hsb": {
+        "family": "Indo-European",
+        "full": "hsb_ufal",
+        "full_form": "UD_Upper_Sorbian-UFAL",
+        "genus": "Slavic",
+        "iso-3": "hsb",
+        "name": "Upper Sorbian",
+        "num": 623,
+        "script": "Latn"
+    },
+    "hu": {
+        "family": "Uralic",
+        "full": "hu_szeged",
+        "full_form": "UD_Hungarian-Szeged",
+        "genus": "Ugric",
+        "iso-3": "hun",
+        "name": "Hungarian",
+        "num": 449,
+        "script": "Latn"
+    },
+    "hy": {
+        "family": "Indo-European",
+        "full": "hy_armtdp",
+        "full_form": "UD_Armenian-ArmTDP",
+        "genus": "Armenian",
+        "iso-3": "hye",
+        "name": "Armenian",
+        "num": 278,
+        "script": "Armn"
+    },
+    "id": {
+        "family": "Austronesian",
+        "full": "id_pud",
+        "full_form": "UD_Indonesian-PUD",
+        "genus": "Malayo-Sumbawan",
+        "iso-3": "ind",
+        "name": "Indonesian",
+        "num": 1000,
+        "script": "Latn"
+    },
+    "is": {
+        "family": "Indo-European",
+        "full": "is_icepahc",
+        "full_form": "UD_Icelandic-IcePaHC",
+        "genus": "Germanic",
+        "iso-3": "isl",
+        "name": "Icelandic",
+        "num": 5157,
+        "script": "Latn"
+    },
+    "it": {
+        "family": "Indo-European",
+        "full": "it_vit",
+        "full_form": "UD_Italian-VIT",
+        "genus": "Romance",
+        "iso-3": "ita",
+        "name": "Italian",
+        "num": 1067,
+        "script": "Latn"
+    },
+    "ja": {
+        "family": "Japanese",
+        "full": "ja_bccwj",
+        "full_form": "UD_Japanese-BCCWJ",
+        "genus": "Japanese",
+        "iso-3": "jpn",
+        "name": "Japanese",
+        "num": 7871,
+        "script": "Jpan"
+    },
+    "kfm": {
+        "family": "",
+        "full": "kfm_aha",
+        "full_form": "UD_Khunsari-AHA",
+        "genus": "",
+        "iso-3": "kfm",
+        "name": "Khunsari",
+        "num": 10,
+        "script": "Arab"
+    },
+    "kk": {
+        "family": "Altaic",
+        "full": "kk_ktb",
+        "full_form": "UD_Kazakh-KTB",
+        "genus": "Turkic",
+        "iso-3": "kaz",
+        "name": "Kazakh",
+        "num": 1047,
+        "script": "Cyrl"
+    },
+    "kmr": {
+        "family": "Indo-European",
+        "full": "kmr_mg",
+        "full_form": "UD_Kurmanji-MG",
+        "genus": "Iranian",
+        "iso-3": "kmr",
+        "name": "Northern Kurdish",
+        "num": 734,
+        "script": "Arab"
+    },
+    "ko": {
+        "family": "Korean",
+        "full": "ko_kaist",
+        "full_form": "UD_Korean-Kaist",
+        "genus": "Korean",
+        "iso-3": "kor",
+        "name": "Korean",
+        "num": 2287,
+        "script": "Kore"
+    },
+    "koi": {
+        "family": "Uralic",
+        "full": "koi_uh",
+        "full_form": "UD_Komi_Permyak-UH",
+        "genus": "Permic",
+        "iso-3": "koi",
+        "name": "Komi-Permyak",
+        "num": 81,
+        "script": "Cyrl"
+    },
+    "kpv": {
+        "family": "Uralic",
+        "full": "kpv_lattice",
+        "full_form": "UD_Komi_Zyrian-Lattice",
+        "genus": "Permic",
+        "iso-3": "kpv",
+        "name": "Komi-Zyrian",
+        "num": 435,
+        "script": "Cyrl"
+    },
+    "krl": {
+        "family": "Uralic",
+        "full": "krl_kkpp",
+        "full_form": "UD_Karelian-KKPP",
+        "genus": "Finnic",
+        "iso-3": "krl",
+        "name": "Karelian",
+        "num": 228,
+        "script": "Latn"
+    },
+    "la": {
+        "family": "Indo-European",
+        "full": "la_ittb",
+        "full_form": "UD_Latin-ITTB",
+        "genus": "Italic",
+        "iso-3": "lat",
+        "name": "Latin",
+        "num": 2101,
+        "script": "Latn"
+    },
+    "lij": {
+        "family": "Indo-European",
+        "full": "lij_glt",
+        "full_form": "UD_Ligurian-GLT",
+        "genus": "Romance",
+        "iso-3": "lij",
+        "name": "Ligurian",
+        "num": 296,
+        "script": "Latn"
+    },
+    "lt": {
+        "family": "Indo-European",
+        "full": "lt_alksnis",
+        "full_form": "UD_Lithuanian-ALKSNIS",
+        "genus": "Baltic",
+        "iso-3": "lit",
+        "name": "Lithuanian",
+        "num": 684,
+        "script": "Latn"
+    },
+    "lv": {
+        "family": "Indo-European",
+        "full": "lv_lvtb",
+        "full_form": "UD_Latvian-LVTB",
+        "genus": "Baltic",
+        "iso-3": "lav",
+        "name": "Latvian",
+        "num": 1823,
+        "script": "Latn"
+    },
+    "lzh": {
+        "family": "Sino-Tibetan",
+        "full": "lzh_kyoto",
+        "full_form": "UD_Classical_Chinese-Kyoto",
+        "genus": "Chinese",
+        "iso-3": "lzh",
+        "name": "Literary Chinese",
+        "num": 4469,
+        "script": "Chinese"
+    },
+    "mdf": {
+        "family": "Uralic",
+        "full": "mdf_jr",
+        "full_form": "UD_Moksha-JR",
+        "genus": "Mordvin",
+        "iso-3": "mdf",
+        "name": "Moksha",
+        "num": 167,
+        "script": "Cyrl"
+    },
+    "mpu": {
+        "family": "Tupian",
+        "full": "mpu_tudet",
+        "full_form": "UD_Makurap-TuDeT",
+        "genus": "Tupari",
+        "iso-3": "mpu",
+        "name": "Makur\u00e1p",
+        "num": 31,
+        "script": "Latn"
+    },
+    "mr": {
+        "family": "Indo-European",
+        "full": "mr_ufal",
+        "full_form": "UD_Marathi-UFAL",
+        "genus": "Indic",
+        "iso-3": "mar",
+        "name": "Marathi",
+        "num": 47,
+        "script": "Deva"
+    },
+    "mt": {
+        "family": "Afro-Asiatic",
+        "full": "mt_mudt",
+        "full_form": "UD_Maltese-MUDT",
+        "genus": "Semitic",
+        "iso-3": "mlt",
+        "name": "Maltese",
+        "num": 518,
+        "script": "Latn"
+    },
+    "myu": {
+        "family": "Tupian",
+        "full": "myu_tudet",
+        "full_form": "UD_Munduruku-TuDeT",
+        "genus": "Munduruku",
+        "iso-3": "myu",
+        "name": "Munduruk\u00fa",
+        "num": 62,
+        "script": "Latn"
+    },
+    "myv": {
+        "family": "Uralic",
+        "full": "myv_jr",
+        "full_form": "UD_Erzya-JR",
+        "genus": "Mordvin",
+        "iso-3": "myv",
+        "name": "Erzya",
+        "num": 1690,
+        "script": "Cyrl"
+    },
+    "nap": {
+        "family": "Indo-European",
+        "full": "nap_rb",
+        "full_form": "UD_Neapolitan-RB",
+        "genus": "Romance",
+        "iso-3": "nap",
+        "name": "Neapolitan",
+        "num": 1,
+        "script": "Latn"
+    },
+    "nds": {
+        "family": "Indo-European",
+        "full": "nds_lsdc",
+        "full_form": "UD_Low_Saxon-LSDC",
+        "genus": "Germanic",
+        "iso-3": "nds",
+        "name": "Low German",
+        "num": 76,
+        "script": "Latn"
+    },
+    "nl": {
+        "family": "Indo-European",
+        "full": "nl_lassysmall",
+        "full_form": "UD_Dutch-LassySmall",
+        "genus": "Germanic",
+        "iso-3": "nld",
+        "name": "Dutch",
+        "num": 875,
+        "script": "Latn"
+    },
+    "no": {
+        "family": "Indo-European",
+        "full": "no_bokmaal",
+        "full_form": "UD_Norwegian-Bokmaal",
+        "genus": "Germanic",
+        "iso-3": "nor",
+        "name": "Norwegian",
+        "num": 1939,
+        "script": "Latn"
+    },
+    "nyq": {
+        "family": "Indo-European",
+        "full": "nyq_aha",
+        "full_form": "UD_Nayini-AHA",
+        "genus": "Iranian",
+        "iso-3": "nyq",
+        "name": "Nayini",
+        "num": 10,
+        "script": "Arab"
+    },
+    "olo": {
+        "family": "Uralic",
+        "full": "olo_kkpp",
+        "full_form": "UD_Livvi-KKPP",
+        "genus": "Finnic",
+        "iso-3": "olo",
+        "name": "Livvi",
+        "num": 106,
+        "script": "Latn"
+    },
+    "orv": {
+        "family": "Indo-European",
+        "full": "orv_torot",
+        "full_form": "UD_Old_East_Slavic-TOROT",
+        "genus": "Slavic",
+        "iso-3": "orv",
+        "name": "Old Russian",
+        "num": 1756,
+        "script": "Cyrl"
+    },
+    "otk": {
+        "family": "Turkic",
+        "full": "otk_tonqq",
+        "full_form": "UD_Old_Turkish-Tonqq",
+        "genus": "Northeastern",
+        "iso-3": "otk",
+        "name": "Old Turkish",
+        "num": 18,
+        "script": " Old Turkish"
+    },
+    "pcm": {
+        "family": "other",
+        "full": "pcm_nsc",
+        "full_form": "UD_Naija-NSC",
+        "genus": "Creoles and Pidgins",
+        "iso-3": "pcm",
+        "name": "Nigerian Pidgin",
+        "num": 972,
+        "script": "Latn"
+    },
+    "pl": {
+        "family": "Indo-European",
+        "full": "pl_pdb",
+        "full_form": "UD_Polish-PDB",
+        "genus": "Slavic",
+        "iso-3": "pol",
+        "name": "Polish",
+        "num": 2215,
+        "script": "Latn"
+    },
+    "pt": {
+        "family": "Indo-European",
+        "full": "pt_gsd",
+        "full_form": "UD_Portuguese-GSD",
+        "genus": "Romance",
+        "iso-3": "por",
+        "name": "Portuguese",
+        "num": 1204,
+        "script": "Latn"
+    },
+    "qhe": {
+        "family": "Quechuan",
+        "full": "qhe_hiencs",
+        "full_form": "UD_Hindi_English-HIENCS",
+        "genus": "Quechuan",
+        "iso-3": "qhe",
+        "name": "Cusco Quechua",
+        "num": 225,
+        "script": "Latn"
+    },
+    "qpm": {
+        "family": "Indo-European",
+        "full": "qpm_philotis",
+        "full_form": "UD_Pomak-Philotis",
+        "genus": "Slavic",
+        "iso-3": "qpm",
+        "name": "Pomak",
+        "num": 635,
+        "script": "Latn"
+    },
+    "qtd": {
+        "family": "Code switching",
+        "full": "qtd_sagt",
+        "full_form": "UD_Turkish_German-SAGT",
+        "genus": "Code switching",
+        "iso-3": "qtd",
+        "name": "Turkish German",
+        "num": 805,
+        "script": "Latn"
+    },
+    "ro": {
+        "family": "Indo-European",
+        "full": "ro_nonstandard",
+        "full_form": "UD_Romanian-Nonstandard",
+        "genus": "Romance",
+        "iso-3": "ron",
+        "name": "Romanian",
+        "num": 1052,
+        "script": "Latn"
+    },
+    "ru": {
+        "family": "Indo-European",
+        "full": "ru_syntagrus",
+        "full_form": "UD_Russian-SynTagRus",
+        "genus": "Slavic",
+        "iso-3": "rus",
+        "name": "Russian",
+        "num": 6491,
+        "script": "Cyrl"
+    },
+    "sa": {
+        "family": "Indo-European",
+        "full": "sa_vedic",
+        "full_form": "UD_Sanskrit-Vedic",
+        "genus": "Indic",
+        "iso-3": "san",
+        "name": "Sanskrit",
+        "num": 1473,
+        "script": "Brahmi"
+    },
+    "sk": {
+        "family": "Indo-European",
+        "full": "sk_snk",
+        "full_form": "UD_Slovak-SNK",
+        "genus": "Slavic",
+        "iso-3": "slk",
+        "name": "Slovak",
+        "num": 1061,
+        "script": "Latn"
+    },
+    "sl": {
+        "family": "Indo-European",
+        "full": "sl_sst",
+        "full_form": "UD_Slovenian-SST",
+        "genus": "Slavic",
+        "iso-3": "slv",
+        "name": "Slovenian",
+        "num": 1110,
+        "script": "Latn"
+    },
+    "sme": {
+        "family": "Uralic",
+        "full": "sme_giella",
+        "full_form": "UD_North_Sami-Giella",
+        "genus": "Saami",
+        "iso-3": "sme",
+        "name": "Northern Sami",
+        "num": 865,
+        "script": "Latn"
+    },
+    "sms": {
+        "family": "Uralic",
+        "full": "sms_giellagas",
+        "full_form": "UD_Skolt_Sami-Giellagas",
+        "genus": "Sami",
+        "iso-3": "sms",
+        "name": "Skolt Sami",
+        "num": 104,
+        "script": "Latn"
+    },
+    "soj": {
+        "family": "Indo-European",
+        "full": "soj_aha",
+        "full_form": "UD_Soi-AHA",
+        "genus": "Iranian",
+        "iso-3": "soj",
+        "name": "Soi",
+        "num": 8,
+        "script": ""
+    },
+    "sq": {
+        "family": "Indo-European",
+        "full": "sq_tsa",
+        "full_form": "UD_Albanian-TSA",
+        "genus": "Albanian",
+        "iso-3": "sqi",
+        "name": "Albanian",
+        "num": 60,
+        "script": "Latn"
+    },
+    "sr": {
+        "family": "Indo-European",
+        "full": "sr_set",
+        "full_form": "UD_Serbian-SET",
+        "genus": "Slavic",
+        "iso-3": "srp",
+        "name": "Serbian",
+        "num": 520,
+        "script": "Cyrl"
+    },
+    "sv": {
+        "family": "Indo-European",
+        "full": "sv_talbanken",
+        "full_form": "UD_Swedish-Talbanken",
+        "genus": "Germanic",
+        "iso-3": "swe",
+        "name": "Swedish",
+        "num": 1219,
+        "script": "Latn"
+    },
+    "swl": {
+        "family": "other",
+        "full": "swl_sslc",
+        "full_form": "UD_Swedish_Sign_Language-SSLC",
+        "genus": "Sign Languages",
+        "iso-3": "swl",
+        "name": "Swedish Sign Language",
+        "num": 34,
+        "script": ""
+    },
+    "ta": {
+        "family": "Dravidian",
+        "full": "ta_mwtt",
+        "full_form": "UD_Tamil-MWTT",
+        "genus": "Dravidian",
+        "iso-3": "tam",
+        "name": "Tamil",
+        "num": 534,
+        "script": "Taml"
+    },
+    "te": {
+        "family": "Dravidian",
+        "full": "te_mtg",
+        "full_form": "UD_Telugu-MTG",
+        "genus": "Dravidian",
+        "iso-3": "tel",
+        "name": "Telugu",
+        "num": 146,
+        "script": "Telu"
+    },
+    "th": {
+        "family": "Tai-Kadai",
+        "full": "th_pud",
+        "full_form": "UD_Thai-PUD",
+        "genus": "Kam-Tai",
+        "iso-3": "tha",
+        "name": "Thai",
+        "num": 1000,
+        "script": "Thai"
+    },
+    "tl": {
+        "family": "Austronesian",
+        "full": "tl_trg",
+        "full_form": "UD_Tagalog-TRG",
+        "genus": "Greater Central Philippine",
+        "iso-3": "tgl",
+        "name": "Tagalog",
+        "num": 128,
+        "script": "Latn"
+    },
+    "tpn": {
+        "family": "Tupian",
+        "full": "tpn_tudet",
+        "full_form": "UD_Tupinamba-TuDeT",
+        "genus": "Maweti-Guarani",
+        "iso-3": "tpn",
+        "name": "Tupinamb\u00e1",
+        "num": 8,
+        "script": "Latn"
+    },
+    "tr": {
+        "family": "Altaic",
+        "full": "tr_gb",
+        "full_form": "UD_Turkish-GB",
+        "genus": "Turkic",
+        "iso-3": "tur",
+        "name": "Turkish",
+        "num": 2880,
+        "script": "Latn"
+    },
+    "ug": {
+        "family": "Altaic",
+        "full": "ug_udt",
+        "full_form": "UD_Uyghur-UDT",
+        "genus": "Turkic",
+        "iso-3": "uig",
+        "name": "Uighur",
+        "num": 900,
+        "script": "Uighur"
+    },
+    "uk": {
+        "family": "Indo-European",
+        "full": "uk_iu",
+        "full_form": "UD_Ukrainian-IU",
+        "genus": "Slavic",
+        "iso-3": "ukr",
+        "name": "Ukrainian",
+        "num": 892,
+        "script": "Cyrl"
+    },
+    "ur": {
+        "family": "Indo-European",
+        "full": "ur_udtb",
+        "full_form": "UD_Urdu-UDTB",
+        "genus": "Indic",
+        "iso-3": "urd",
+        "name": "Urdu",
+        "num": 535,
+        "script": "Arab"
+    },
+    "urb": {
+        "family": "Tupian",
+        "full": "urb_tudet",
+        "full_form": "UD_Kaapor-TuDeT",
+        "genus": "Maweti-Guarani",
+        "iso-3": "urb",
+        "name": "Urub\u00fa-Kaapor",
+        "num": 83,
+        "script": "Latn"
+    },
+    "vi": {
+        "family": "Austro-Asiatic",
+        "full": "vi_vtb",
+        "full_form": "UD_Vietnamese-VTB",
+        "genus": "Vietic",
+        "iso-3": "vie",
+        "name": "Vietnamese",
+        "num": 800,
+        "script": "Latn"
+    },
+    "wbp": {
+        "family": "Pama-Nyungan",
+        "full": "wbp_ufal",
+        "full_form": "UD_Warlpiri-UFAL",
+        "genus": "Western Pama-Nyungan",
+        "iso-3": "wbp",
+        "name": "Warlpiri",
+        "num": 55,
+        "script": ""
+    },
+    "wo": {
+        "family": "Niger-Congo",
+        "full": "wo_wtb",
+        "full_form": "UD_Wolof-WTB",
+        "genus": "Wolof",
+        "iso-3": "wol",
+        "name": "Wolof",
+        "num": 470,
+        "script": "Latn"
+    },
+    "xnr": {
+        "family": "Indo-European",
+        "full": "xnr_kdtb",
+        "full_form": "UD_Kangri-KDTB",
+        "genus": "Indic",
+        "iso-3": "xnr",
+        "name": "Kangri",
+        "num": 288,
+        "script": "Deva"
+    },
+    "yo": {
+        "family": "Niger-Congo",
+        "full": "yo_ytb",
+        "full_form": "UD_Yoruba-YTB",
+        "genus": "Defoid",
+        "iso-3": "yor",
+        "name": "Yoruba",
+        "num": 318,
+        "script": "Latn"
+    },
+    "yue": {
+        "family": "Sino-Tibetan",
+        "full": "yue_hk",
+        "full_form": "UD_Cantonese-HK",
+        "genus": "Chinese",
+        "iso-3": "yue",
+        "name": "Cantonese",
+        "num": 1004,
+        "script": "Chinese"
+    },
+    "zh": {
+        "family": "Sino-Tibetan",
+        "full": "zh_hk",
+        "full_form": "UD_Chinese-HK",
+        "genus": "Chinese",
+        "iso-3": "zho",
+        "name": "Chinese",
+        "num": 1004,
+        "script": "Chinese"
+    }
+}
