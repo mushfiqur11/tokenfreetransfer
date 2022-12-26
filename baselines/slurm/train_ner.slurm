@@ -30,7 +30,7 @@ python scripts/run_udp.py \
     --learning_rate 1e-4 \
     --num_train_epochs 10 \
     --max_seq_length 256 \
-    --output_dir experiments/udp/bert-$TASK_NAME \
+    --output_dir experiments/ner/bert-$TASK_NAME \
     --overwrite_output_dir \
     --store_best_model \
     --evaluation_strategy epoch \
@@ -47,7 +47,7 @@ python scripts/run_udp.py \
     --learning_rate 1e-4 \
     --num_train_epochs 10 \
     --max_seq_length 256 \
-    --output_dir experiments/udp/mbert-$TASK_NAME \
+    --output_dir experiments/ner/mbert-$TASK_NAME \
     --overwrite_output_dir \
     --store_best_model \
     --evaluation_strategy epoch \

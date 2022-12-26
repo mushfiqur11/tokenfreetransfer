@@ -95,3 +95,17 @@ if [[ "$task" = "train_udp" ]]; then
    done
 fi
 
+
+if [[ "$task" = "train_pos" ]]; then
+   export ALL_MODELS=("english-ewt" "arabic-padt" "coptic-scriptorium" "hindi-hdtb" "japanese-gsd" "korean-gsd" "tamil-ttb" "vietnamese-vtb" "chinese-gsd")
+   export ALL_MODELS=("english-ewt")
+
+   for MODEL_NAME in ${ALL_MODELS[@]}; do
+      efile="tr_output/${MODEL_NAME}_pos_train.err"
+      ofile="tr_output/${MODEL_NAME}_pos_train.out"
+      echo ${efile}
+      echo ${ofile}
+      sbatch -o ${ofile} -e ${efile} slurm/train_pos.slurm ${MODEL_NAME}
+   done
+fi
+

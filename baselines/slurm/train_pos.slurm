@@ -18,39 +18,39 @@ TASK_NAME=$1
 nvidia-smi
 
 pwd
-source vnv/vnv-adp-l/bin/activate
+source vnv/vnv-trns/bin/activate
 
-python scripts/run_udp.py \
+python scripts/run_pos.py \
     --model_name_or_path bert-base-cased \
     --do_train \
     --do_eval \
     --do_predict \
+    --dataset_name universal_dependencies \
     --task_name $TASK_NAME \
+    --label_column_name upos \
     --per_device_train_batch_size 12 \
     --learning_rate 1e-4 \
     --num_train_epochs 10 \
+    --max_steps 10 \
     --max_seq_length 256 \
-    --output_dir experiments/udp/bert-$TASK_NAME \
-    --overwrite_output_dir \
-    --store_best_model \
-    --evaluation_strategy epoch \
-    --metric_score las
+    --output_dir experiments/pos/bert-$TASK_NAME \
+    --overwrite_output_dir
 
 
-python scripts/run_udp.py \
+python scripts/run_pos.py \
     --model_name_or_path bert-base-multilingual-cased \
     --do_train \
     --do_eval \
     --do_predict \
+    --dataset_name universal_dependencies \
     --task_name $TASK_NAME \
+    --label_column_name upos \
     --per_device_train_batch_size 12 \
     --learning_rate 1e-4 \
     --num_train_epochs 10 \
+    --max_steps 10 \
     --max_seq_length 256 \
-    --output_dir experiments/udp/mbert-$TASK_NAME \
-    --overwrite_output_dir \
-    --store_best_model \
-    --evaluation_strategy epoch \
-    --metric_score las
+    --output_dir experiments/pos/mbert-$TASK_NAME \
+    --overwrite_output_dir
 
 deactivate
