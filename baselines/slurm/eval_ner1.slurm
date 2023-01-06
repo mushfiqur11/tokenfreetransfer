@@ -20,37 +20,71 @@ nvidia-smi
 pwd
 source vnv/vnv-adp-l/bin/activate
 
-python scripts/run_udp.py \
-    --model_name_or_path bert-base-cased \
-    --do_train \
-    --do_eval \
+rm experiments/ner/bert-result-${TASK_NAME}.txt
+python scripts/run_ner.py \
+    --model_name_or_path experiments/ner/bert-$TASK_NAME \
     --do_predict \
+    --all_predict true \
+    --dataset_name wikiann \
+    --ds_script_name wikiann \
+    --result_file experiments/ner/bert-result-${TASK_NAME}.txt \
+    --lang_config ../metadata/ner_metadata.json \
     --task_name $TASK_NAME \
     --per_device_train_batch_size 12 \
+    --label_column_name ner_tags \
     --learning_rate 1e-4 \
     --num_train_epochs 10 \
     --max_seq_length 256 \
-    --output_dir experiments/udp/bert-$TASK_NAME \
-    --overwrite_output_dir \
-    --store_best_model \
-    --evaluation_strategy epoch \
-    --metric_score las
+    --output_dir experiments/ner/bert-$TASK_NAME \
+    --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/ner/$TASK_NAME
 
-
-python scripts/run_udp.py \
-    --model_name_or_path bert-base-multilingual-cased \
-    --do_train \
-    --do_eval \
+rm experiments/ner/bert-result-${TASK_NAME}.txt
+python scripts/run_ner.py \
+    --model_name_or_path experiments/ner/mbert-$TASK_NAME \
     --do_predict \
+    --all_predict true \
+    --dataset_name wikiann \
+    --ds_script_name wikiann \
+    --result_file experiments/ner/mbert-result-${TASK_NAME}.txt \
+    --lang_config ../metadata/ner_metadata.json \
     --task_name $TASK_NAME \
     --per_device_train_batch_size 12 \
+    --label_column_name ner_tags \
     --learning_rate 1e-4 \
     --num_train_epochs 10 \
     --max_seq_length 256 \
-    --output_dir experiments/udp/mbert-$TASK_NAME \
-    --overwrite_output_dir \
-    --store_best_model \
-    --evaluation_strategy epoch \
-    --metric_score las
+    --output_dir experiments/ner/mbert-$TASK_NAME \
+    --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/ner/$TASK_NAME
+
+# python scripts/run_ner.py \
+#     --model_name_or_path bert-base-cased \
+#     --do_train \
+#     --do_eval \
+#     --do_predict \
+#     --dataset_name wikiann \
+#     --lang_config ../metadata/ner_m2_metadata.json \
+#     --task_name $TASK_NAME \
+#     --per_device_train_batch_size 12 \
+#     --learning_rate 1e-4 \
+#     --num_train_epochs 10 \
+#     --max_seq_length 256 \
+#     --output_dir experiments/ner/bert-$TASK_NAME \
+#     --overwrite_output_dir
+
+
+# python scripts/run_ner.py \
+#     --model_name_or_path bert-base-multilingual-cased \
+#     --do_train \
+#     --do_eval \
+#     --do_predict \
+#     --dataset_name wikiann \
+#     --lang_config ../metadata/ner_m2_metadata.json \
+#     --task_name $TASK_NAME \
+#     --per_device_train_batch_size 12 \
+#     --learning_rate 1e-4 \
+#     --num_train_epochs 10 \
+#     --max_seq_length 256 \
+#     --output_dir experiments/ner/mbert-$TASK_NAME \
+#     --overwrite_output_dir
 
 deactivate

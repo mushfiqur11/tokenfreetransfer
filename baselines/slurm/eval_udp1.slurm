@@ -21,7 +21,7 @@ pwd
 source vnv/vnv-adp-l/bin/activate
 
 
-rm experiments/udp/result-${TASK_NAME}.txt
+rm experiments/udp/bert-result-${TASK_NAME}.txt
 python scripts/run_udp.py \
     --model_name_or_path experiments/udp/bert-$TASK_NAME \
     --do_predict \

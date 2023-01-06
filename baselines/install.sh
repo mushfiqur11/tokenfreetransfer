@@ -134,6 +134,34 @@ if [[ "$task" = "evaluate_udp1" ]]; then
    done
 fi
 
+if [[ "$task" = "evaluate_pos1" ]]; then
+   export ALL_MODELS=("english-ewt" "arabic-padt" "coptic-scriptorium" "hindi-hdtb" "japanese-gsd" "korean-gsd" "tamil-ttb" "vietnamese-vtb" "chinese-gsd")
+   # export ALL_MODELS=("english-ewt")
+
+   for MODEL_NAME in ${ALL_MODELS[@]}; do
+      efile="tr_output/${MODEL_NAME}_pos_eval1.err"
+      ofile="tr_output/${MODEL_NAME}_pos_eval1.out"
+      echo ${efile}
+      echo ${ofile}
+      sbatch -o ${ofile} -e ${efile} slurm/eval_pos1.slurm ${MODEL_NAME}
+   done
+fi
+
+if [[ "$task" = "evaluate_ner1" ]]; then
+   export ALL_MODELS=("en" "ar" "hi" "ja" "ko" "ta" "vi" "zh")
+   # export ALL_MODELS=("english-ewt")
+
+   for MODEL_NAME in ${ALL_MODELS[@]}; do
+      efile="tr_output/${MODEL_NAME}_ner_eval1.err"
+      ofile="tr_output/${MODEL_NAME}_ner_eval1.out"
+      echo ${efile}
+      echo ${ofile}
+      sbatch -o ${ofile} -e ${efile} slurm/eval_ner1.slurm ${MODEL_NAME}
+   done
+fi
+
+
+
 if [[ "$task" = "evaluate_udp" ]]; then
    export ALL_MODELS=("english-ewt" "arabic-padt" "coptic-scriptorium" "hindi-hdtb" "japanese-gsd" "korean-gsd" "tamil-ttb" "vietnamese-vtb" "chinese-gsd")
    export ALL_PRED_MODELS=("Afrikaans-AfriBooms" "Akkadian-RIAO" "Amharic-ATT" "Ancient_Greek-Perseus" "Ancient_Hebrew-PTNK" "Arabic-PADT" "Armenian-ArmTDP" "Western_Armenian-ArmTDP" "Bambara-CRB" "Basque-BDT" "Belarusian-HSE" "Breton-KEB" "Bulgarian-BTB" "Buryat-BDT" "Cantonese-HK" "Catalan-AnCora" "Chinese-GSD" "Classical_Chinese-Kyoto" "Coptic-Scriptorium" "Croatian-SET" "Czech-CAC" "Danish-DDT" "Dutch-LassySmall" "English-EWT" "Erzya-JR" "Estonian-EWT" "Faroese-OFT" "Finnish-FTB" "French-GSD" "Galician-CTG" "German-GSD" "Gothic-PROIEL" "Greek-GDT" "Hebrew-HTB" "Hindi-HDTB" "Hungarian-Szeged" "Icelandic-Modern" "Indonesian-GSD" "Irish-IDT" "Italian-ISDT" "Japanese-GSD" "Kazakh-KTB" "Kiche-IU" "Komi_Zyrian-Lattice" "Korean-GSD" "Kurmanji-MG" "Latin-PROIEL" "Latvian-LVTB" "Lithuanian-HSE" "Maltese-MUDT" "Manx-Cadhan" "Mbya_Guarani-Dooley" "Naija-NSC" "North_Sami-Giella" "Norwegian-Nynorsk" "Old_Church_Slavonic-PROIEL" "Old_East_Slavic-TOROT" "Old_French-SRCMF" "Persian-Seraji" "Polish-PDB" "Pomak-Philotis" "Portuguese-GSD" "Romanian-ArT" "Russian-GSD" "Sanskrit-Vedic" "Scottish_Gaelic-ARCOSG" "Serbian-SET" "Slovak-SNK" "Slovenian-SSJ" "Spanish-GSD" "Swedish-LinES" "Tamil-TTB" "Thai-PUD" "Turkish-Kenet" "Turkish_German-SAGT" "Ukrainian-IU" "Upper_Sorbian-UFAL" "Urdu-UDTB" "Uyghur-UDT" "Vietnamese-VTB" "Welsh-CCG" "Western_Armenian-ArmTDP" "Wolof-WTB" "Xibe-XDT")

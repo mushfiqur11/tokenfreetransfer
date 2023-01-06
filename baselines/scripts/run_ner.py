@@ -28,6 +28,7 @@ from typing import Optional
 import datasets
 import numpy as np
 from datasets import ClassLabel, load_dataset, load_metric
+from datasets import load_from_disk, DatasetDict
 
 import transformers
 from transformers import (
@@ -103,6 +104,11 @@ class DataTrainingArguments:
     dataset_name: Optional[str] = field(
         default=None, metadata={"help": "The name of the dataset to use (via the datasets library)."}
     )
+    ds_script_name: Optional[str] = field(
+        default=None, metadata={"help": "The name of the dataset script to use (via the datasets library)."}
+    )
+    result_file: str = field(default=False,metadata={"help": "The identifier of the Universal Dependencies dataset to train on."})
+    all_predict: bool = field(default=False, metadata={"help": "predict for all datasets"})
     lang_config: Optional[str] = field(
         default=None, metadata={"help": "The name of the dataset to use (via the datasets library)."}
     )
@@ -594,38 +600,99 @@ def main():
     if training_args.do_predict:
         logger.info("*** Predict ***")
 
-        predictions, labels, metrics = trainer.predict(predict_dataset, metric_key_prefix="predict")
-        predictions = np.argmax(predictions, axis=2)
+        if data_args.all_predict:
+            def get_dataset(data_lang):
+            # if "test" not in raw_datasets:
+                # raise ValueError("--do_predict requires a test dataset")
+                # predict_dataset = raw_datasets["test"]
+                predict_dataset = load_dataset(data_args.ds_script_name, data_lang,
+                                               split=['test'], cache_dir=model_args.cache_dir)
+                predict_dataset = DatasetDict({"test":predict_dataset[0]})
+                predict_dataset = predict_dataset["test"]
+                if data_args.max_predict_samples is not None:
+                    max_predict_samples = min(len(predict_dataset), data_args.max_predict_samples)
+                    predict_dataset = predict_dataset.select(range(max_predict_samples))
+                with training_args.main_process_first(desc="prediction dataset map pre-processing"):
+                    predict_dataset = predict_dataset.map(
+                        tokenize_and_align_labels,
+                        batched=True,
+                        num_proc=data_args.preprocessing_num_workers,
+                        load_from_cache_file=not data_args.overwrite_cache,
+                        desc="Running tokenizer on prediction dataset",
+                    )
+            # else:
+            #     predict_dataset = raw_datasets["test"]
+                return predict_dataset
 
-        # Remove ignored index (special tokens)
-        true_predictions = [
-            [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
-            for prediction, label in zip(predictions, labels)
-        ]
+            import json
+            with open(data_args.lang_config) as json_file:
+                udp_map = json.load(json_file)
+            output_test_results_file = data_args.result_file
+            if trainer.is_world_process_zero():
+                writer = open(output_test_results_file, "a")
 
-        trainer.log_metrics("predict", metrics)
-        trainer.save_metrics("predict", metrics)
+            task_name = data_args.task_name
 
-        # Save predictions
-        output_predictions_file = os.path.join(training_args.output_dir, "predictions.txt")
-        if trainer.is_world_process_zero():
-            with open(output_predictions_file, "w") as writer:
-                for prediction in true_predictions:
-                    writer.write(" ".join(prediction) + "\n")
+            text='x'
+            count=0
+            for lang, info in udp_map.items():
+                count+=1
+                # if count>2:
+                #     break
+                print(lang, info, count)
+                try:
+                    predict_dataset=get_dataset(lang)
+                    predictions, labels, metrics = trainer.predict(predict_dataset, metric_key_prefix="predict")
+                    predictions = np.argmax(predictions, axis=2)
+                    # Remove ignored index (special tokens)
+                    true_predictions = [
+                        [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
+                        for prediction, label in zip(predictions, labels)
+                    ]
 
-    kwargs = {"finetuned_from": model_args.model_name_or_path, "tasks": "token-classification"}
-    if data_args.dataset_name is not None:
-        kwargs["dataset_tags"] = data_args.dataset_name
-        if data_args.dataset_config_name is not None:
-            kwargs["dataset_args"] = data_args.dataset_config_name
-            kwargs["dataset"] = f"{data_args.dataset_name} {data_args.dataset_config_name}"
+                    # trainer.log_metrics("predict", metrics)
+                    # trainer.save_metrics("predict", metrics)
+                    
+                    logger.info("%s,%s,%s,%s\n" % (task_name, lang, metrics['predict_f1'], metrics['predict_accuracy']))
+                    writer.write("%s,%s,%s,%s\n" % (task_name,  lang, metrics['predict_f1'], metrics['predict_accuracy']))
+                except:
+                    logger.info("#########------------------------error happened in %s----------------########" %(lang))
+                    writer.write("%s,%s,%s,%s\n" % (task_name,  lang, 0, 0))
+
+
         else:
-            kwargs["dataset"] = data_args.dataset_name
+            predictions, labels, metrics = trainer.predict(predict_dataset, metric_key_prefix="predict")
+            predictions = np.argmax(predictions, axis=2)
 
-    if training_args.push_to_hub:
-        trainer.push_to_hub(**kwargs)
-    else:
-        trainer.create_model_card(**kwargs)
+            # Remove ignored index (special tokens)
+            true_predictions = [
+                [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
+                for prediction, label in zip(predictions, labels)
+            ]
+
+            trainer.log_metrics("predict", metrics)
+            trainer.save_metrics("predict", metrics)
+
+            # Save predictions
+            output_predictions_file = os.path.join(training_args.output_dir, "predictions.txt")
+            if trainer.is_world_process_zero():
+                with open(output_predictions_file, "w") as writer:
+                    for prediction in true_predictions:
+                        writer.write(" ".join(prediction) + "\n")
+
+    # kwargs = {"finetuned_from": model_args.model_name_or_path, "tasks": "token-classification"}
+    # if data_args.dataset_name is not None:
+    #     kwargs["dataset_tags"] = data_args.dataset_name
+    #     if data_args.dataset_config_name is not None:
+    #         kwargs["dataset_args"] = data_args.dataset_config_name
+    #         kwargs["dataset"] = f"{data_args.dataset_name} {data_args.dataset_config_name}"
+    #     else:
+    #         kwargs["dataset"] = data_args.dataset_name
+
+    # if training_args.push_to_hub:
+    #     trainer.push_to_hub(**kwargs)
+    # else:
+    #     trainer.create_model_card(**kwargs)
 
 
 def _mp_fn(index):

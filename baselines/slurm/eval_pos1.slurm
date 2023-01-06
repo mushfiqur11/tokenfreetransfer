@@ -20,37 +20,42 @@ nvidia-smi
 pwd
 source vnv/vnv-adp-l/bin/activate
 
-python scripts/run_udp.py \
-    --model_name_or_path bert-base-cased \
-    --do_train \
-    --do_eval \
+
+rm experiments/pos/bert-result-${TASK_NAME}.txt
+python scripts/run_pos.py \
+    --model_name_or_path experiments/pos/bert-$TASK_NAME \
     --do_predict \
+    --all_predict true \
     --task_name $TASK_NAME \
+    --label_column_name upos \
+    --dataset_name universal_dependencies \
+    --ds_script_name scripts/universal_dependencies.py \
+    --result_file experiments/pos/bert-result-${TASK_NAME}.txt \
     --per_device_train_batch_size 12 \
     --learning_rate 1e-4 \
     --num_train_epochs 10 \
     --max_seq_length 256 \
-    --output_dir experiments/udp/bert-$TASK_NAME \
+    --output_dir experiments/pos/bert-$TASK_NAME \
     --overwrite_output_dir \
-    --store_best_model \
-    --evaluation_strategy epoch \
-    --metric_score las
+    --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/pos/$TASK_NAME
 
-
-python scripts/run_udp.py \
-    --model_name_or_path bert-base-multilingual-cased \
-    --do_train \
-    --do_eval \
+rm experiments/pos/mbert-result-${TASK_NAME}.txt
+python scripts/run_pos.py \
+    --model_name_or_path experiments/pos/mbert-$TASK_NAME \
     --do_predict \
+    --all_predict true \
     --task_name $TASK_NAME \
+    --label_column_name upos \
+    --dataset_name universal_dependencies \
+    --ds_script_name scripts/universal_dependencies.py \
+    --result_file experiments/pos/mbert-result-${TASK_NAME}.txt \
     --per_device_train_batch_size 12 \
     --learning_rate 1e-4 \
     --num_train_epochs 10 \
     --max_seq_length 256 \
-    --output_dir experiments/udp/mbert-$TASK_NAME \
+    --output_dir experiments/pos/mbert-$TASK_NAME \
     --overwrite_output_dir \
-    --store_best_model \
-    --evaluation_strategy epoch \
-    --metric_score las
+    --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/pos/$TASK_NAME
 
 deactivate
+
