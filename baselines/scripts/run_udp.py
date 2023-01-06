@@ -9,7 +9,7 @@ import sys
 from dataclasses import dataclass, field
 from typing import Dict, Optional
 
-from datasets import load_dataset
+from datasets import load_dataset, load_from_disk, DatasetDict
 
 import transformers.adapters.composition as ac
 from preprocessing import preprocess_dataset
@@ -73,6 +73,7 @@ class DataTrainingArguments:
     """
 
     task_name: str = field(metadata={"help": "The identifier of the Universal Dependencies dataset to train on."})
+    all_predict: bool = field(default=False, metadata={"help": "predict for all datasets"})
     max_seq_length: int = field(
         default=128,
         metadata={
@@ -82,9 +83,13 @@ class DataTrainingArguments:
             )
         },
     )
+    result_file: str = field(default=False,metadata={"help": "The identifier of the Universal Dependencies dataset to train on."})
     overwrite_cache: bool = field(
         default=False,
         metadata={"help": "Overwrite the cached training and evaluation sets."},
+    )
+    ds_script_name: Optional[str] = field(
+        default=None, metadata={"help": "The name of the dataset script to use (via the datasets library)."}
     )
 
 
@@ -180,17 +185,18 @@ def main():
         config=config,
         cache_dir=model_args.cache_dir,
     )
-    model.add_dependency_parsing_head(
-        task_name,
-        num_labels=num_labels,
-        id2label=label_map,
-    )
+    if training_args.do_train:
+        model.add_dependency_parsing_head(
+            task_name,
+            num_labels=num_labels,
+            id2label=label_map,
+        )
 
-    if model_args.leave_out_twelvth:
-        logger.info("Leaving out 12")
-        leave_out = [11]
-    else:
-        leave_out = []
+        if model_args.leave_out_twelvth:
+            logger.info("Leaving out 12")
+            leave_out = [11]
+        else:
+            leave_out = []
 
     # Setup adapters
     if adapter_args.train_adapter:
@@ -273,6 +279,7 @@ def main():
 
     # Evaluation
     results = {}
+    training_args.do_eval=False
     if training_args.do_eval:
         logger.info("*** Evaluate ***")
 
@@ -332,14 +339,53 @@ def main():
                     cache_dir=model_args.cache_dir,
                 ).to(training_args.device)
 
-        predictions, _, metrics = trainer.predict(dataset["test"])
+        if data_args.all_predict:
+            def get_dataset(data_lang):
+                dataset = load_dataset(data_args.ds_script_name, data_lang,
+                                       split=['test'], cache_dir=model_args.cache_dir)
+                dataset = DatasetDict({"test":dataset[0]})
+                dataset = preprocess_dataset(dataset, tokenizer, labels, data_args, pad_token_id=-1)
+                return dataset
+            import json
+            with open('../metadata/udp_map.json') as json_file:
+                udp_map = json.load(json_file)
+            output_test_results_file = data_args.result_file
+            if trainer.is_world_process_zero():
+                writer = open(output_test_results_file, "a")
 
-        output_test_results_file = os.path.join(training_args.output_dir, "test_results.txt")
-        if trainer.is_world_process_zero():
-            with open(output_test_results_file, "w") as writer:
-                for key, value in metrics.items():
-                    logger.info("  %s = %s", key, value)
-                    writer.write("%s = %s\n" % (key, value))
+            text='x'
+            count=0
+            for lang, info in udp_map.items():
+                count+=1
+                if count>4:
+                    break
+                print(lang, info, count)
+                try:
+                    dataset=get_dataset(info)
+
+                    predictions, _, metrics = trainer.predict(dataset["test"])
+
+                    if trainer.is_world_process_zero():
+                        logger.info("%s,%s,%s,%s\n" % (task_name, 
+                            lang, 
+                            metrics['uas'], 
+                            metrics['las']))
+                        writer.write("%s,%s,%s,%s\n" % (task_name,
+                            lang, 
+                            metrics['uas'], 
+                            metrics['las']))
+                except:
+                    logger.info("#########------------------------error happened in %s----------------########" %(lang))
+                    writer.write("%s,%s,%s,%s\n" % (task_name,  lang, 0, 0))
+        else:
+            predictions, _, metrics = trainer.predict(dataset["test"])
+
+            output_test_results_file = os.path.join(training_args.output_dir, "test_results.txt")
+            if trainer.is_world_process_zero():
+                with open(output_test_results_file, "w") as writer:
+                    for key, value in metrics.items():
+                        logger.info("  %s = %s", key, value)
+                        writer.write("%s = %s\n" % (key, value))
 
     return results
 
