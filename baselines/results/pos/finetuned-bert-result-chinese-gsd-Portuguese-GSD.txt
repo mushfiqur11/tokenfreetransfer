@@ -1,0 +1,1 @@
+chinese-gsd,portuguese-gsd,0.6302678015362259,0.66866575619025

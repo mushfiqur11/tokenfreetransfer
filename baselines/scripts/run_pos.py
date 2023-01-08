@@ -26,7 +26,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 import datasets
-from datasets import load_dataset, load_from_disk, DatasetDict
+from datasets import load_dataset, load_from_disk, DatasetDict, get_dataset_split_names
 import numpy as np
 from datasets import ClassLabel, load_dataset, load_metric
 
@@ -277,12 +277,24 @@ def main():
     import json
     with open('../metadata/udp_map.json') as json_file:
         udp_map = json.load(json_file)
-    data_args.dataset_config_name = udp_map[data_args.task_name]
-    data_args.task_name = data_args.dataset_config_name
+    if data_args.dataset_config_name is None:
+        data_args.dataset_config_name = udp_map[data_args.task_name.lower()]
+        data_args.task_name = data_args.dataset_config_name
+    else:
+        lang=data_args.dataset_config_name.lower()
+        data_args.dataset_config_name = udp_map[data_args.dataset_config_name.lower()]
+        source_lang=data_args.task_name
+        if "train" not in get_dataset_split_names(data_args.ds_script_name,data_args.dataset_config_name):
+            data_args.dataset_config_name = udp_map[data_args.task_name.lower()]
+        print("target lang:",lang,"-------------------")
+
+    print("dataset_config:",data_args.dataset_config_name,"-------------------")
+    print("task_name:",data_args.task_name,"-------------------")
+
     if data_args.dataset_name is not None:
         # Downloading and loading a dataset from the hub.
         raw_datasets = load_dataset(
-            data_args.dataset_name,
+            data_args.ds_script_name,
             data_args.dataset_config_name,
             cache_dir=model_args.cache_dir,
             use_auth_token=True if model_args.use_auth_token else None,
@@ -306,6 +318,7 @@ def main():
     else:
         column_names = raw_datasets["validation"].column_names
         features = raw_datasets["validation"].features
+
 
     if data_args.text_column_name is not None:
         text_column_name = data_args.text_column_name
@@ -596,9 +609,7 @@ def main():
     # Predict
     if training_args.do_predict:
         logger.info("*** Predict ***")
-
-        if data_args.all_predict:
-            def get_dataset(data_lang):
+        def get_dataset(data_lang):
                 dataset = load_dataset(data_args.ds_script_name, data_lang,
                                        split=['test'], cache_dir=model_args.cache_dir)
                 dataset = DatasetDict({"test":dataset[0]})
@@ -615,6 +626,7 @@ def main():
                         desc="Running tokenizer on prediction dataset",
                     )
                 return predict_dataset
+        if data_args.all_predict:
 
             import json
             with open('../metadata/udp_map.json') as json_file:
@@ -631,30 +643,31 @@ def main():
                 # if count>4:
                 #     break
                 print(lang, info, count)
-                # try:
-                dataset=get_dataset(info)
+                try:
+                    dataset=get_dataset(info)
 
-                predictions, labels, metrics = trainer.predict(dataset, metric_key_prefix="predict")
-                predictions = np.argmax(predictions, axis=2)
+                    predictions, labels, metrics = trainer.predict(dataset, metric_key_prefix="predict")
+                    predictions = np.argmax(predictions, axis=2)
 
-                # Remove ignored index (special tokens)
-                true_predictions = [
-                    [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
-                    for prediction, label in zip(predictions, labels)
-                ]
+                    # Remove ignored index (special tokens)
+                    true_predictions = [
+                        [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
+                        for prediction, label in zip(predictions, labels)
+                    ]
 
-                if trainer.is_world_process_zero():
-                    logger.info("%s,%s,%s,%s\n" % (task_name, 
-                        lang, 
-                        metrics['predict_f1'], metrics['predict_accuracy']))
-                    writer.write("%s,%s,%s,%s\n" % (task_name,
-                        lang, 
-                        metrics['predict_f1'], metrics['predict_accuracy']))
-                # except:
-                #     logger.info("#########------------------------error happened in %s----------------########" %(lang))
-                #     writer.write("%s,%s,%s,%s\n" % (task_name,  lang, 0, 0))
+                    if trainer.is_world_process_zero():
+                        logger.info("%s,%s,%s,%s\n" % (task_name, 
+                            lang, 
+                            metrics['predict_f1'], metrics['predict_accuracy']))
+                        writer.write("%s,%s,%s,%s\n" % (task_name,
+                            lang, 
+                            metrics['predict_f1'], metrics['predict_accuracy']))
+                except:
+                    logger.info("#########------------------------error happened in %s----------------########" %(lang))
+                    writer.write("%s,%s,%s,%s\n" % (task_name,  lang, 0, 0))
 
         else:
+            predict_dataset=get_dataset(udp_map[lang])
             predictions, labels, metrics = trainer.predict(predict_dataset, metric_key_prefix="predict")
             predictions = np.argmax(predictions, axis=2)
 
@@ -673,6 +686,12 @@ def main():
                 with open(output_predictions_file, "w") as writer:
                     for prediction in true_predictions:
                         writer.write(" ".join(prediction) + "\n")
+
+            output_test_results_file = data_args.result_file
+            if trainer.is_world_process_zero():
+                writer = open(output_test_results_file, "a")
+            logger.info("%s,%s,%s,%s\n" % (source_lang, lang, metrics['predict_f1'], metrics['predict_accuracy']))
+            writer.write("%s,%s,%s,%s\n" % (source_lang,  lang, metrics['predict_f1'], metrics['predict_accuracy']))
 
     kwargs = {"finetuned_from": model_args.model_name_or_path, "tasks": "token-classification"}
     if data_args.dataset_name is not None:

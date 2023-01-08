@@ -1,0 +1,1 @@
+english-ewt,ancient_greek-perseus,0.5002894279850549,0.5509804857101961

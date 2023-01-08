@@ -1,0 +1,1 @@
+chinese-gsd,classical_chinese-kyoto,0.6080874668381702,0.7050511538285085

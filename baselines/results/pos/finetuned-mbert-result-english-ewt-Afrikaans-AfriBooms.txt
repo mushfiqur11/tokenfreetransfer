@@ -1,0 +1,1 @@
+english-ewt,afrikaans-afribooms,0.8855465128257959,0.8972677595628415

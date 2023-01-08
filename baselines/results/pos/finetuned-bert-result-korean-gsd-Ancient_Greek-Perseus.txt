@@ -1,0 +1,1 @@
+korean-gsd,ancient_greek-perseus,0.23197415737185348,0.3103349556255368

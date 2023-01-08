@@ -1,0 +1,1 @@
+arabic-padt,classical_chinese-kyoto,0.07145055080312636,0.21314859843097675

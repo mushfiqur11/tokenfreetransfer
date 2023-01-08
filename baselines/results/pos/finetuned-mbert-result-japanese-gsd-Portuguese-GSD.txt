@@ -1,0 +1,1 @@
+japanese-gsd,portuguese-gsd,0.8334644801863333,0.857223442788433

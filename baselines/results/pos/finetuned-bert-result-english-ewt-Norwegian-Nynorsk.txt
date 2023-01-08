@@ -1,0 +1,1 @@
+english-ewt,norwegian-nynorsk,0.4965772767322595,0.5560085577039519

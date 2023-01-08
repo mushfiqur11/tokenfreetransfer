@@ -1,0 +1,1 @@
+chinese-gsd,ancient_greek-perseus,0.24209519696455561,0.341444794350606

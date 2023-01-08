@@ -9,7 +9,7 @@ import sys
 from dataclasses import dataclass, field
 from typing import Dict, Optional
 
-from datasets import load_dataset, load_from_disk, DatasetDict
+from datasets import load_dataset, load_from_disk, DatasetDict, get_dataset_split_names
 
 import transformers.adapters.composition as ac
 from preprocessing import preprocess_dataset
@@ -82,6 +82,15 @@ class DataTrainingArguments:
                 "than this will be truncated, sequences shorter will be padded."
             )
         },
+    )
+    dataset_name: Optional[str] = field(
+        default=None, metadata={"help": "The name of the dataset to use (via the datasets library)."}
+    )
+    ds_script_name: Optional[str] = field(
+        default=None, metadata={"help": "The name of the dataset script to use (via the datasets library)."}
+    )
+    dataset_config_name: Optional[str] = field(
+        default=None, metadata={"help": "The configuration name of the dataset to use (via the datasets library)."}
     )
     result_file: str = field(default=False,metadata={"help": "The identifier of the Universal Dependencies dataset to train on."})
     overwrite_cache: bool = field(
@@ -176,16 +185,31 @@ def main():
     with open('../metadata/udp_map.json') as json_file:
         udp_map = json.load(json_file)
 
-    data_args.task_name = udp_map[data_args.task_name]
-    task_name = "ud_" + data_args.task_name
+    if data_args.dataset_config_name is None:
+        data_args.dataset_config_name = udp_map[data_args.task_name.lower()]
+        task_name = "ud_" + data_args.task_name.lower()
+    else:
+        lang=data_args.dataset_config_name.lower()
+        data_args.dataset_config_name = udp_map[data_args.dataset_config_name.lower()]
+        source_lang=data_args.task_name.lower()
+        if "train" not in get_dataset_split_names(data_args.ds_script_name,data_args.dataset_config_name):  
+            data_args.dataset_config_name = udp_map[data_args.task_name.lower()]
+        data_args.task_name = udp_map[data_args.task_name.lower()]
+        task_name = "ud_" + data_args.task_name.lower()
+
+
     language = adapter_args.language
+
+    # Load and preprocess dataset
+    dataset = load_dataset(data_args.ds_script_name, data_args.dataset_config_name)
+    dataset = preprocess_dataset(dataset, tokenizer, labels, data_args, pad_token_id=-1)
 
     model = AutoAdapterModel.from_pretrained(
         model_args.model_name_or_path,
         config=config,
         cache_dir=model_args.cache_dir,
     )
-    if training_args.do_train:
+    if training_args.do_train and data_args.dataset_config_name is None:
         model.add_dependency_parsing_head(
             task_name,
             num_labels=num_labels,
@@ -251,10 +275,6 @@ def main():
                 "Adapters can only be loaded in adapters training mode.Use --train_adapter to enable adapter training"
             )
 
-    # Load and preprocess dataset
-    dataset = load_dataset("universal_dependencies", data_args.task_name)
-    dataset = preprocess_dataset(dataset, tokenizer, labels, data_args, pad_token_id=-1)
-
     # Initialize our Trainer
     # HACK: Set this attribute to False to prevent label columns from being deleted
     training_args.remove_unused_columns = False
@@ -298,6 +318,12 @@ def main():
     # Predict
     if training_args.do_predict:
         logging.info("*** Test ***")
+        def get_dataset(data_lang):
+                dataset = load_dataset(data_args.ds_script_name, data_lang,
+                                       split=['test'], cache_dir=model_args.cache_dir)
+                dataset = DatasetDict({"test":dataset[0]})
+                dataset = preprocess_dataset(dataset, tokenizer, labels, data_args, pad_token_id=-1)
+                return dataset
 
         if training_args.store_best_model:
             logger.info("Loading best model for predictions.")
@@ -340,12 +366,6 @@ def main():
                 ).to(training_args.device)
 
         if data_args.all_predict:
-            def get_dataset(data_lang):
-                dataset = load_dataset(data_args.ds_script_name, data_lang,
-                                       split=['test'], cache_dir=model_args.cache_dir)
-                dataset = DatasetDict({"test":dataset[0]})
-                dataset = preprocess_dataset(dataset, tokenizer, labels, data_args, pad_token_id=-1)
-                return dataset
             import json
             with open('../metadata/udp_map.json') as json_file:
                 udp_map = json.load(json_file)
@@ -378,6 +398,7 @@ def main():
                     logger.info("#########------------------------error happened in %s----------------########" %(lang))
                     writer.write("%s,%s,%s,%s\n" % (task_name,  lang, 0, 0))
         else:
+            dataset=get_dataset(udp_map[lang])
             predictions, _, metrics = trainer.predict(dataset["test"])
 
             output_test_results_file = os.path.join(training_args.output_dir, "test_results.txt")
@@ -386,6 +407,18 @@ def main():
                     for key, value in metrics.items():
                         logger.info("  %s = %s", key, value)
                         writer.write("%s = %s\n" % (key, value))
+            output_test_results_file = data_args.result_file
+            if trainer.is_world_process_zero():
+                writer = open(output_test_results_file, "a")
+            if trainer.is_world_process_zero():
+                logger.info("%s,%s,%s,%s\n" % (source_lang, 
+                    lang, 
+                    metrics['uas'], 
+                    metrics['las']))
+                writer.write("%s,%s,%s,%s\n" % (source_lang,
+                    lang, 
+                    metrics['uas'], 
+                    metrics['las']))
 
     return results
 

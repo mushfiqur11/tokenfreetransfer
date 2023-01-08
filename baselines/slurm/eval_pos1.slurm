@@ -13,49 +13,117 @@
 
 
 TASK_NAME=$1
+eval_step=${2:-'evaluate_pos1'}
+pred_lang=${3:-'en_ewt'}
 
 # to see ID and state of GPUs assigned
 nvidia-smi
 
-pwd
-source vnv/vnv-adp-l/bin/activate
 
 
-rm experiments/pos/bert-result-${TASK_NAME}.txt
-python scripts/run_pos.py \
-    --model_name_or_path experiments/pos/bert-$TASK_NAME \
-    --do_predict \
-    --all_predict true \
-    --task_name $TASK_NAME \
-    --label_column_name upos \
-    --dataset_name universal_dependencies \
-    --ds_script_name scripts/universal_dependencies.py \
-    --result_file experiments/pos/bert-result-${TASK_NAME}.txt \
-    --per_device_train_batch_size 12 \
-    --learning_rate 1e-4 \
-    --num_train_epochs 10 \
-    --max_seq_length 256 \
-    --output_dir experiments/pos/bert-$TASK_NAME \
-    --overwrite_output_dir \
-    --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/pos/$TASK_NAME
+if [[ "$eval_step" = "evaluate_pos1" ]]; then
+    pwd
+    source vnv/vnv-adp-l/bin/activate
 
-rm experiments/pos/mbert-result-${TASK_NAME}.txt
-python scripts/run_pos.py \
-    --model_name_or_path experiments/pos/mbert-$TASK_NAME \
-    --do_predict \
-    --all_predict true \
-    --task_name $TASK_NAME \
-    --label_column_name upos \
-    --dataset_name universal_dependencies \
-    --ds_script_name scripts/universal_dependencies.py \
-    --result_file experiments/pos/mbert-result-${TASK_NAME}.txt \
-    --per_device_train_batch_size 12 \
-    --learning_rate 1e-4 \
-    --num_train_epochs 10 \
-    --max_seq_length 256 \
-    --output_dir experiments/pos/mbert-$TASK_NAME \
-    --overwrite_output_dir \
-    --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/pos/$TASK_NAME
+    model_name="bert"
+    result_file="experiments/pos/${model_name}-result-${TASK_NAME}.txt"
+    rm ${result_file}
 
-deactivate
+    python scripts/run_pos.py \
+        --model_name_or_path experiments/pos/${model_name}-$TASK_NAME \
+        --do_predict \
+        --all_predict true \
+        --task_name $TASK_NAME \
+        --label_column_name upos \
+        --dataset_name universal_dependencies \
+        --ds_script_name scripts/universal_dependencies.py \
+        --result_file ${result_file} \
+        --per_device_train_batch_size 12 \
+        --learning_rate 1e-4 \
+        --num_train_epochs 10 \
+        --max_seq_length 256 \
+        --output_dir experiments/pos/${model_name}-$TASK_NAME \
+        --overwrite_output_dir \
+        --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/pos/$TASK_NAME
+
+    model_name="mbert"
+    result_file="experiments/pos/${model_name}-result-${TASK_NAME}.txt"
+    rm ${result_file}
+    
+    python scripts/run_pos.py \
+        --model_name_or_path experiments/pos/${model_name}-$TASK_NAME \
+        --do_predict \
+        --all_predict true \
+        --task_name $TASK_NAME \
+        --label_column_name upos \
+        --dataset_name universal_dependencies \
+        --ds_script_name scripts/universal_dependencies.py \
+        --result_file ${result_file} \
+        --per_device_train_batch_size 12 \
+        --learning_rate 1e-4 \
+        --num_train_epochs 10 \
+        --max_seq_length 256 \
+        --output_dir experiments/pos/${model_name}-$TASK_NAME \
+        --overwrite_output_dir \
+        --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/pos/$TASK_NAME
+
+    deactivate
+fi
+
+if [[ "$eval_step" = "evaluate_pos2" ]]; then
+    pwd
+    source vnv/vnv-adp-l/bin/activate
+
+    model_name="bert"
+    result_file="experiments/pos/finetuned-${model_name}-result-${TASK_NAME}-${pred_lang}.txt"
+    rm ${result_file}
+
+    python scripts/run_pos.py \
+        --model_name_or_path experiments/pos/${model_name}-$TASK_NAME \
+        --do_train \
+        --do_eval \
+        --do_predict \
+        --all_predict false \
+        --dataset_name universal_dependencies \
+        --dataset_config_name ${pred_lang} \
+        --ds_script_name scripts/universal_dependencies.py \
+        --result_file ${result_file} \
+        --task_name $TASK_NAME \
+        --per_device_train_batch_size 12 \
+        --label_column_name upos \
+        --learning_rate 1e-4 \
+        --num_train_epochs 10 \
+        --max_steps 10 \
+        --max_seq_length 256 \
+        --output_dir experiments/pos/finetuned/${model_name}-${pred_lang} \
+        --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/pos/${pred_lang} \
+        --overwrite_output_dir
+
+    model_name="mbert"
+    result_file="experiments/pos/finetuned-${model_name}-result-${TASK_NAME}-${pred_lang}.txt"
+    rm ${result_file}
+
+    python scripts/run_pos.py \
+        --model_name_or_path experiments/pos/${model_name}-$TASK_NAME \
+        --do_train \
+        --do_eval \
+        --do_predict \
+        --all_predict false \
+        --dataset_name universal_dependencies \
+        --dataset_config_name ${pred_lang} \
+        --ds_script_name scripts/universal_dependencies.py \
+        --result_file ${result_file} \
+        --task_name $TASK_NAME \
+        --per_device_train_batch_size 12 \
+        --label_column_name upos \
+        --learning_rate 1e-4 \
+        --num_train_epochs 10 \
+        --max_steps 10 \
+        --max_seq_length 256 \
+        --output_dir experiments/pos/finetuned/${model_name}-${pred_lang} \
+        --cache_dir /scratch/ffaisal/hug_cache/tokens/datasets/pos/${pred_lang} \
+        --overwrite_output_dir
+
+    deactivate
+fi
 
