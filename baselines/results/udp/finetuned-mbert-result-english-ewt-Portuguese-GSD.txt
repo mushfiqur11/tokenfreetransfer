@@ -1,0 +1,1 @@
+english-ewt,portuguese-gsd,80.97593455721488,75.42407812549541

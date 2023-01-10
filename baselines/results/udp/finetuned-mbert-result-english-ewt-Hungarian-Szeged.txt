@@ -1,0 +1,1 @@
+english-ewt,hungarian-szeged,75.57427258805512,62.88284839203675

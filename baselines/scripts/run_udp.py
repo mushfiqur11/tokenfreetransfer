@@ -201,8 +201,10 @@ def main():
     language = adapter_args.language
 
     # Load and preprocess dataset
-    dataset = load_dataset(data_args.ds_script_name, data_args.dataset_config_name)
+    dataset = load_dataset(data_args.ds_script_name, data_args.dataset_config_name, cache_dir=model_args.cache_dir)
     dataset = preprocess_dataset(dataset, tokenizer, labels, data_args, pad_token_id=-1)
+    if 'validation' not in dataset:
+        dataset['validation']=dataset['train']
 
     model = AutoAdapterModel.from_pretrained(
         model_args.model_name_or_path,

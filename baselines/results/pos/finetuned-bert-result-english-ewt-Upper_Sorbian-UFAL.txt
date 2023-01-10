@@ -1,0 +1,1 @@
+english-ewt,upper_sorbian-ufal,0.5151726730758902,0.5953800298062594

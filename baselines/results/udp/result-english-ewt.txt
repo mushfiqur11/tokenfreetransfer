@@ -1,0 +1,10 @@
+ud_en_ewt,afrikaans-afribooms,0,0
+ud_en_ewt,akkadian-riao,0,0
+ud_en_ewt,afrikaans-afribooms,27.91852955787382,7.47143566815698
+ud_en_ewt,akkadian-riao,19.38755795981453,3.2892194744976817
+ud_en_ewt,afrikaans-afribooms,92.09005778043435,89.81071926678621
+ud_en_ewt,akkadian-riao,92.09005778043435,89.81071926678621
+ud_en_ewt,afrikaans-afribooms,27.91852955787382,7.47143566815698
+ud_en_ewt,akkadian-riao,19.38755795981453,3.2892194744976817
+ud_en_ewt,amharic-att,3.6563436563436564,3.1868131868131866
+ud_en_ewt,ancient_greek-perseus,15.92691792615267,2.8744977998852113

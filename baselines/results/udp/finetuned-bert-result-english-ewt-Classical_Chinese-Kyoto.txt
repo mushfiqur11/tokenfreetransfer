@@ -1,0 +1,1 @@
+english-ewt,classical_chinese-kyoto,25.797128045143825,17.979538468596594

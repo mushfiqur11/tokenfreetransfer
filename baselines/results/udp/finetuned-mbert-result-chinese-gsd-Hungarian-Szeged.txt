@@ -1,0 +1,1 @@
+chinese-gsd,hungarian-szeged,74.02373660030628,60.815467075038285
